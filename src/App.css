@@ -1,11 +1,92 @@
+/* FONT */
+
+body {
+  font-family: "WorkSans", "Segoe UI", "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+}
+
 /* BUTTONS */
+
+.btn {
+  font-family: 'WorkSans-SemiBold';
+  font-style: normal;
+}
 
 .btn:focus, .btn.focus {
   -webkit-box-shadow: none;
-          box-shadow: none; }
+          box-shadow: none;
+}
 
+.btn-primary {
+  color: #fff;
+  background-color: #53963e;
+  border: none;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #53963e;
+  border: none;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  color: #fff;
+  background-color: #53963e;
+  border: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #53963e;
+  border: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
 
 /* FORM */
 
 .form-control:focus {
-    box-shadow: none; }
+    box-shadow: none;
+}
+
+.col-form-label-lg {
+  font-family: 'Worksans-SemiBold'
+}
+
+/* CUSTOM */
+
+#logo {
+  position: fixed;
+  top: 23px;
+  left: 48px;
+  width: 168px;
+}
+
+#header {
+  margin-bottom: 30px;
+  color: black;
+  font-family: 'Adieu';
+  font-style: bold;
+  font-size: 50px;
+  align: center;
+}
+
+#description {
+  margin: 20px 0px;
+}
+
+#app-container {
+  padding: 10px 40px;
+}
+
+#form-container {
+  margin: 20px 10px;
+}
+
+#results-container {
+  padding: 10px 30px;
+}
