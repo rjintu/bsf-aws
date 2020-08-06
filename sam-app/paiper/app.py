@@ -29,7 +29,7 @@ def lambda_handler(event, context):
     print('Loaded phraser')
     model.load_wv()
     print('Loaded word vectors')
-    results = model.most_similar('flavor')
+    results = model.most_similar('food')
     print('Got most similar')
 
     return {

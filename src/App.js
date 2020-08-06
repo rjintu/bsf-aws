@@ -44,6 +44,16 @@ export default class App extends React.Component {
   }
 
   handleSubmit = async () => {
+    await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1/predictmostsimilar', {
+      term: this.state.query,
+      topn: 5 })
+      .then(async res => {
+        const results = res.data;
+        console.log(results);
+      })
+  }
+  /* 
+  handleSubmit = async () => {
     await axios.get('asdf', { query: this.state.query })
       .then(async res => {
         const results = res.data;
@@ -52,7 +62,8 @@ export default class App extends React.Component {
           console.log(this.state);
         }
       })
-  }
+  } 
+  */
 
   renderResults() {
     return this.state.results.map(result =>
