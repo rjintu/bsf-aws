@@ -47,10 +47,9 @@ export default class App extends React.Component {
     await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1/predictmostsimilar', {
       term: this.state.query,
       topn: 5 })
-      .then(async res => {
-        const results = res.data;
-        console.log(results);
-      })
+      .then(function (response) {
+        console.log(response);
+      } )
   }
   /* 
   handleSubmit = async () => {
