@@ -9,13 +9,21 @@ Resources:
       CodeUri: paiper/
       Handler: app.lambda_handler
       Runtime: python3.6
-      Timeout: 900
+      Timeout: 60
       Events:
         Food2Vec:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /food2vec
-            Method: get
+            Method: post
+      Policies:
+        SageMakerEndpointPolicy:
+          Version: "2012-10-17"
+          Statement:
+            Sid": "VisualEditor0"
+            Effect: "Allow"
+            Action: "sagemaker:InvokeEndpoint"
+            Resource: "*"
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

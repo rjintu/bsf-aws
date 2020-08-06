@@ -1,40 +1,27 @@
-from food2vec import Food2Vec
+import os
+import io
+import boto3
 import json
+import csv
+
+# grab environment variables
+# ENDPOINT_NAME = os.environ['ENDPOINT_NAME']
+runtime = boto3.client('runtime.sagemaker')
 
 def lambda_handler(event, context):
-    """Sample pure Lambda function
+    print("Received event: " + json.dumps(event, indent=2))
+    # print(ENDPOINT_NAME)
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
+    payload = json.loads(json.dumps(event))
+    print(payload)
+    payload = json.dumps(payload).encode('utf-8')
 
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
 
-    context: object, required
-        Lambda Context runtime methods and attributes
+    response = runtime.invoke_endpoint(EndpointName="paiper-2020-08-05-18-52-17-419",
+                                       ContentType='application/json',
+                                       Body=payload)
+    print(response)
+    result = json.loads(response['Body'].read().decode())
+    print(result)
 
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-    print('Called lambda function')
-    model = Food2Vec('dataset1')
-    print('Made Food2Vec object')
-    model.load_phraser()
-    print('Loaded phraser')
-    model.load_wv()
-    print('Loaded word vectors')
-    results = model.most_similar('flavor')
-    print('Got most similar')
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": results[0]
-        }),
-    }
+    return result
