@@ -32,8 +32,7 @@ export default class SimilarForm extends React.Component {
     const query = this.state.query;
     query[name] = value;
     this.setState({ query });
-    this.validate()
-    console.log(this.state.query);
+    this.validate();
   }
 
   handleSubmit = event => {

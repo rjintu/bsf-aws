@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table";
 export default class Results extends React.Component {
   renderResults() {
     return this.props.results.map(result =>
-      <tr>
+      <tr key={result.term}>
         <td>{result.term}</td>
         <td>{result.similarity}</td>
       </tr>

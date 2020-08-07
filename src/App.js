@@ -21,36 +21,13 @@ export default class App extends React.Component {
   }
 
   postQuery = async (query) => {
-    // instantiate a headers object
-    var myHeaders = new Headers();
-    // add content type header to object
-    myHeaders.append("Content-Type", "application/json");
-    // using built in JSON utility package turn object to string and store in a variable
-    var raw = JSON.stringify(query);
-    console.log(raw);
-    // create a JSON object with parameters for API call and store in a variable
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-    // make API call with parameters and use promises to get response
-    fetch("https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1/predictmostsimilar", requestOptions)
-    .then(response => console.log(response.text()))
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-
-    // await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1', query)
-    //   .then(async res => {
-    //     const results = res.data.results;
-    //     console.log(res.data)
-    //     console.log(results)
-    //     if (results !== this.state.results) {
-    //       await this.setState({ results });
-    //       console.log(this.state);
-    //     }
-    //   })
+    await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1/predictmostsimilar', query)
+      .then(res => {
+        const results = res.data.results;
+        if (results !== this.state.results) {
+          this.setState({ results });
+        }
+      })
   }
 
   validate() {
