@@ -56,11 +56,12 @@ body {
 /* FORM */
 
 .form-control:focus {
-    box-shadow: none;
+  border-color: #53963e;
+  box-shadow: none;
 }
 
 .col-form-label-lg {
-  font-family: 'Worksans-SemiBold'
+  font-family: 'Worksans-Medium'
 }
 
 /* CUSTOM */
@@ -115,6 +116,7 @@ body {
 }
 
 #description {
+  color: black;
   margin: 20px 0px;
 }
 
