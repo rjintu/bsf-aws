@@ -2,6 +2,7 @@
 .DS_Store
 .vscode
 .env
+/frontend
 
 # Ignores models
 paiper/food2vec/models/*

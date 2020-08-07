@@ -27,6 +27,7 @@ export default class App extends React.Component {
     myHeaders.append("Content-Type", "application/json");
     // using built in JSON utility package turn object to string and store in a variable
     var raw = JSON.stringify(query);
+    console.log(raw);
     // create a JSON object with parameters for API call and store in a variable
     var requestOptions = {
         method: 'POST',
