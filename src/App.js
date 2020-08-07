@@ -1,5 +1,7 @@
 import React from 'react';
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import SimilarForm from "./components/SimilarForm";
 import Results from "./components/Results";
@@ -21,33 +23,11 @@ export default class App extends React.Component {
   }
 
   postQuery = async (query) => {
-    // // instantiate a headers object
-    // var myHeaders = new Headers();
-    // // add content type header to object
-    // myHeaders.append("Content-Type", "application/json");
-    // // using built in JSON utility package turn object to string and store in a variable
-    // var raw = JSON.stringify(query);
-    // // create a JSON object with parameters for API call and store in a variable
-    // var requestOptions = {
-    //     method: 'POST',
-    //     headers: myHeaders,
-    //     body: raw,
-    //     redirect: 'follow'
-    // };
-    // // make API call with parameters and use promises to get response
-    // fetch("https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1", requestOptions)
-    // .then(response => console.log(response.text()))
-    // .then(result => alert(JSON.parse(result).body))
-    // .catch(error => console.log('error', error));
-
-    await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1', query)
-      .then(async res => {
+    await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1/predictmostsimilar', query)
+      .then(res => {
         const results = res.data.results;
-        console.log(res.data)
-        console.log(results)
         if (results !== this.state.results) {
-          await this.setState({ results });
-          console.log(this.state);
+          this.setState({ results });
         }
       })
   }
@@ -80,9 +60,16 @@ export default class App extends React.Component {
     return (
       <div id="app">
         <Container>
-          <Image id="logo" src={logo} />
-          <Container id="header" className="text-center" fluid>
-            Paiper
+          <Container id="header">
+            <Image id="logo" className="logo" src={logo} />
+            <Row>
+              <Col sm={0} id="logo-container" className="text-center">
+                <Image id="logo-mobile" className="logo" src={logo} />
+              </Col>
+              <Col sm={12} id="title" className="text-center">
+                Paiper
+              </Col>
+            </Row>
           </Container>
           <Container id="description" className="text-center" fluid>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec turpis ac bibendum. Proin venenatis, augue vel pharetra vulputate, sapien libero auctor felis, vel hendrerit odio ante non eros. Mauris at nunc rhoncus, congue enim sed, iaculis neque. Ut et vestibulum est. Mauris sit amet mi elit. Vivamus condimentum, metus sed rutrum pharetra, arcu risus tincidunt leo, nec consectetur ex tellus vel justo. Mauris sit amet nibh leo.

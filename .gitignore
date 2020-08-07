@@ -2,17 +2,7 @@
 .DS_Store
 .vscode
 .env
-
-# Ignores models
-paiper/food2vec/models/*
-paiper/food2vec/wv/*
-sam-app/paiper/food2vec/models/*
-sam-app/paiper/food2vec/wv/*
-
-# Ignores S2ORC data
-paiper/scraper/s2orc/data/*
-
-# NODE
+/frontend
 
 # dependencies
 /node_modules

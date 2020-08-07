@@ -32,8 +32,7 @@ export default class SimilarForm extends React.Component {
     const query = this.state.query;
     query[name] = value;
     this.setState({ query });
-    this.validate()
-    console.log(this.state.query);
+    this.validate();
   }
 
   handleSubmit = event => {
@@ -41,6 +40,7 @@ export default class SimilarForm extends React.Component {
     event.returnValue = false;
 
     const { query } = this.state;
+    query.topn = parseInt(query.topn);
     this.props.postQuery(query);
   }
 
@@ -69,13 +69,13 @@ export default class SimilarForm extends React.Component {
             <Col>
               <Form.Control className="form-control-lg"
                 type="text" name="term"
-                placeholder="flavor"
+                placeholder="e.g. flavor"
                 onChange={this.handleChange}
               />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
-            <Form.Label column sm={2} className="col-form-label-lg"># Terms</Form.Label>
+            <Form.Label column sm={2} className="col-form-label-lg">Return</Form.Label>
             <Col>
               <Form.Control className="form-control-lg"
                 type="number" name="topn"

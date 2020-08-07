@@ -56,32 +56,67 @@ body {
 /* FORM */
 
 .form-control:focus {
-    box-shadow: none;
+  border-color: #53963e;
+  box-shadow: none;
 }
 
 .col-form-label-lg {
-  font-family: 'Worksans-SemiBold'
+  font-family: 'Worksans-Medium'
 }
 
 /* CUSTOM */
 
-#logo {
-  position: fixed;
-  top: 23px;
-  left: 48px;
+#header {
+  margin-bottom: 30px;
+}
+
+.logo {
   width: 168px;
 }
 
-#header {
-  margin-bottom: 30px;
+#logo {
+    position: absolute;
+    top: 23px;
+    left: 48px;
+}
+@media (max-width: 576px) {
+  #logo {
+    height: 0px;
+  }
+}
+
+@media (min-width: 576px) {
+  #logo-mobile {
+    height: 0px;
+  }
+}
+
+#logo-container {
+  padding-top: 15px;
+}
+@media (min-width: 576px) {
+  #logo-container {
+    height: 0px;
+    padding-top: 0px;
+  }
+}
+
+#title {
   color: black;
   font-family: 'Adieu';
   font-style: bold;
-  font-size: 50px;
+  font-size: 45px;
   align: center;
+  padding-top: 5px;
+}
+@media (min-width: 576px) {
+  #title {
+    padding-top: 0px;
+  }
 }
 
 #description {
+  color: black;
   margin: 20px 0px;
 }
 
