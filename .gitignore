@@ -4,17 +4,6 @@
 .env
 /frontend
 
-# Ignores models
-paiper/food2vec/models/*
-paiper/food2vec/wv/*
-sam-app/paiper/food2vec/models/*
-sam-app/paiper/food2vec/wv/*
-
-# Ignores S2ORC data
-paiper/scraper/s2orc/data/*
-
-# NODE
-
 # dependencies
 /node_modules
 /.pnp
