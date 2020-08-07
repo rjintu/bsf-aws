@@ -65,7 +65,7 @@ export default class SimilarForm extends React.Component {
       <Container id="form-container" fluid>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row}>
-            <Form.Label column sm={2} className="col-form-label-lg">Term</Form.Label>
+            <Form.Label column sm={3} className="col-form-label-lg">Term</Form.Label>
             <Col>
               <Form.Control className="form-control-lg"
                 type="text" name="term"
@@ -75,7 +75,7 @@ export default class SimilarForm extends React.Component {
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
-            <Form.Label column sm={2} className="col-form-label-lg"># Terms</Form.Label>
+            <Form.Label column sm={3} className="col-form-label-lg"># Terms</Form.Label>
             <Col>
               <Form.Control className="form-control-lg"
                 type="number" name="topn"

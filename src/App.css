@@ -65,11 +65,25 @@ body {
 
 /* CUSTOM */
 
-#logo {
-  position: fixed;
-  top: 23px;
-  left: 48px;
+.logo {
   width: 168px;
+}
+
+#logo {
+    position: absolute;
+    top: 23px;
+    left: 48px;
+}
+@media (max-width: 576px) {
+  #logo {
+    height: 0px;
+  }
+}
+
+@media (min-width: 576px) {
+  #logo-container {
+    height: 0px;
+  }
 }
 
 #header {
@@ -77,7 +91,7 @@ body {
   color: black;
   font-family: 'Adieu';
   font-style: bold;
-  font-size: 50px;
+  font-size: 45px;
   align: center;
 }
 

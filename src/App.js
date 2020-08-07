@@ -1,5 +1,7 @@
 import React from 'react';
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import SimilarForm from "./components/SimilarForm";
 import Results from "./components/Results";
@@ -58,9 +60,16 @@ export default class App extends React.Component {
     return (
       <div id="app">
         <Container>
-          <Image id="logo" src={logo} />
-          <Container id="header" className="text-center" fluid>
-            Paiper
+          <Container id="header">
+            <Image id="logo" className="logo" src={logo} />
+            <Row>
+              <Col id="logo-container" sm={0} className="text-center">
+                <Image className="logo" src={logo} />
+              </Col>
+              <Col sm={12} className="text-center">
+                Paiper
+              </Col>
+            </Row>
           </Container>
           <Container id="description" className="text-center" fluid>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec turpis ac bibendum. Proin venenatis, augue vel pharetra vulputate, sapien libero auctor felis, vel hendrerit odio ante non eros. Mauris at nunc rhoncus, congue enim sed, iaculis neque. Ut et vestibulum est. Mauris sit amet mi elit. Vivamus condimentum, metus sed rutrum pharetra, arcu risus tincidunt leo, nec consectetur ex tellus vel justo. Mauris sit amet nibh leo.
