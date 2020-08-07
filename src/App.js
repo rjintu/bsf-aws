@@ -63,10 +63,10 @@ export default class App extends React.Component {
           <Container id="header">
             <Image id="logo" className="logo" src={logo} />
             <Row>
-              <Col id="logo-container" sm={0} className="text-center">
-                <Image className="logo" src={logo} />
+              <Col sm={0} id="logo-container" className="text-center">
+                <Image id="logo-mobile" className="logo" src={logo} />
               </Col>
-              <Col sm={12} className="text-center">
+              <Col sm={12} id="title" className="text-center">
                 Paiper
               </Col>
             </Row>

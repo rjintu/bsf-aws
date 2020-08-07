@@ -65,6 +65,10 @@ body {
 
 /* CUSTOM */
 
+#header {
+  margin-bottom: 30px;
+}
+
 .logo {
   width: 168px;
 }
@@ -81,18 +85,33 @@ body {
 }
 
 @media (min-width: 576px) {
-  #logo-container {
+  #logo-mobile {
     height: 0px;
   }
 }
 
-#header {
-  margin-bottom: 30px;
+#logo-container {
+  padding-top: 15px;
+}
+@media (min-width: 576px) {
+  #logo-container {
+    height: 0px;
+    padding-top: 0px;
+  }
+}
+
+#title {
   color: black;
   font-family: 'Adieu';
   font-style: bold;
   font-size: 45px;
   align: center;
+  padding-top: 5px;
+}
+@media (min-width: 576px) {
+  #title {
+    padding-top: 0px;
+  }
 }
 
 #description {
