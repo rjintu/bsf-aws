@@ -41,6 +41,7 @@ export default class SimilarForm extends React.Component {
     event.returnValue = false;
 
     const { query } = this.state;
+    query.topn = parseInt(query.topn);
     this.props.postQuery(query);
   }
 
