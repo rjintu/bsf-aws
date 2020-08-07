@@ -23,7 +23,7 @@ export default class App extends React.Component {
   }
 
   postQuery = async (query) => {
-    await axios.post('https://v6ywaik4w1.execute-api.us-east-2.amazonaws.com/phase1/similar', query)
+    await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1/predictmostsimilar', query)
       .then(res => {
         const results = res.data.results;
         if (results !== this.state.results) {
