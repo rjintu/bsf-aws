@@ -35,7 +35,7 @@ export default class App extends React.Component {
         redirect: 'follow'
     };
     // make API call with parameters and use promises to get response
-    fetch("https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1", requestOptions)
+    fetch("https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1/predictmostsimilar", requestOptions)
     .then(response => console.log(response.text()))
     .then(result => console.log(JSON.parse(result).body))
     .catch(error => console.log('error', error));
