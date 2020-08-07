@@ -1,11 +1,8 @@
 import React from 'react';
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
+import SimilarForm from "./components/SimilarForm";
+import Results from "./components/Results";
 
 import axios from "axios";
 
@@ -19,50 +16,56 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      query: null,
-      results: [
-        {
-          "term": "cow",
-          "similarity": 0.9823234
-        },
-        {
-          "term": "pig",
-          "similarity": 0.9379564
-        },
-        {
-          "term": "chicken",
-          "similarity": 0.9283848
-        }
-      ]
+      results: []
     };
   }
 
-  handleChange = event => {
-    const query = event.target.value;
-    this.setState({ query });
-    console.log(this.state);
-  }
+  postQuery = async (query) => {
+    // // instantiate a headers object
+    // var myHeaders = new Headers();
+    // // add content type header to object
+    // myHeaders.append("Content-Type", "application/json");
+    // // using built in JSON utility package turn object to string and store in a variable
+    // var raw = JSON.stringify(query);
+    // // create a JSON object with parameters for API call and store in a variable
+    // var requestOptions = {
+    //     method: 'POST',
+    //     headers: myHeaders,
+    //     body: raw,
+    //     redirect: 'follow'
+    // };
+    // // make API call with parameters and use promises to get response
+    // fetch("https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1", requestOptions)
+    // .then(response => console.log(response.text()))
+    // .then(result => alert(JSON.parse(result).body))
+    // .catch(error => console.log('error', error));
 
-  handleSubmit = async () => {
-    await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1/predictmostsimilar', {
-      term: this.state.query,
-      topn: 5 })
-      .then(function (response) {
-        console.log(response);
-      } )
-  }
-  /* 
-  handleSubmit = async () => {
-    await axios.get('asdf', { query: this.state.query })
+    await axios.post('https://q8p8e8b2dk.execute-api.us-east-2.amazonaws.com/dev1', query)
       .then(async res => {
-        const results = res.data;
+        const results = res.data.results;
+        console.log(res.data)
+        console.log(results)
         if (results !== this.state.results) {
           await this.setState({ results });
           console.log(this.state);
         }
       })
-  } 
-  */
+  }
+
+  validate() {
+    const { post, valid } = this.state;
+
+    valid.title = post.title.length > 0;
+    valid.room = post.room.length > 0;
+    valid.building = post.building !== "-- Select building --";
+    valid.images = post.images.length > 0;
+    valid.desc = post.desc.length < 251;
+    valid.feeds = post.feeds !== "" && post.feeds > 0;
+
+    const validForm = valid.title && valid.room && valid.building &&
+      valid.images && valid.desc && valid.feeds;
+    this.setState({ validForm });
+  }
 
   renderResults() {
     return this.state.results.map(result =>
@@ -85,48 +88,12 @@ export default class App extends React.Component {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum nec turpis ac bibendum. Proin venenatis, augue vel pharetra vulputate, sapien libero auctor felis, vel hendrerit odio ante non eros. Mauris at nunc rhoncus, congue enim sed, iaculis neque. Ut et vestibulum est. Mauris sit amet mi elit. Vivamus condimentum, metus sed rutrum pharetra, arcu risus tincidunt leo, nec consectetur ex tellus vel justo. Mauris sit amet nibh leo.
           </Container>
           <Container id="app-container" fluid>
-            <Container id="form-container" fluid>
-              <Form onSubmit={this.handleSubmit}>
-                  <Form.Group as={Row}>
-                    <Form.Label column sm={2} className="col-form-label-lg">Query</Form.Label>
-                    <Col>
-                      <Form.Control className="form-control-lg"
-                        type="text" name="query"
-                        placeholder="flavor"
-                        onChange={this.handleChange}
-                      />
-                    </Col>
-                  </Form.Group>
-                  <Form.Group as={Row}>
-                    <Form.Label column sm={2} className="col-form-label-lg"># Terms</Form.Label>
-                    <Col>
-                      <Form.Control className="form-control-lg"
-                        type="text" name="query"
-                        value="1"
-                        onChange={this.handleChange}
-                      />
-                    </Col>
-                    <Col sm={2}>
-                      <Button className="btn-lg" type="submit" variant="primary">
-                        Submit
-                      </Button>
-                    </Col>
-                  </Form.Group>
-              </Form>
-            </Container>
-            <Container id="results-container" fluid>
-              <Table striped bordered hover size="sm">
-                <thead>
-                  <tr>
-                    <th>Term</th>
-                    <th>Similarity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.renderResults()}
-                </tbody>
-              </Table>
-            </Container>
+            <SimilarForm
+              postQuery={this.postQuery}
+            />
+            <Results
+              results={this.state.results}
+            />
           </Container>
         </Container>
       </div>
