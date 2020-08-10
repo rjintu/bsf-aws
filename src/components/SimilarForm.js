@@ -11,7 +11,7 @@ export default class SimilarForm extends React.Component {
 
     this.query = {
       term: "",
-      topn: "1"
+      topn: "10"
     }
 
     this.valid = {
@@ -38,6 +38,7 @@ export default class SimilarForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     event.returnValue = false;
+    this.props.setLoading(true);
 
     const { query } = this.state;
     query.topn = parseInt(query.topn);
@@ -83,7 +84,7 @@ export default class SimilarForm extends React.Component {
                 onChange={this.handleChange}
               />
             </Col>
-            <Col sm={2}>
+            <Col sm={3}>
               <Button className="btn-lg" type="submit" variant="primary"
                 disabled={!this.state.validForm}>
                 Submit

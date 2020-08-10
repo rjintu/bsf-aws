@@ -18,42 +18,28 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      results: []
+      loading: false,
+      term: "",
+      results: null
     };
   }
 
   postQuery = async (query) => {
     await axios.post('https://v6ywaik4w1.execute-api.us-east-2.amazonaws.com/phase1/similar', query)
       .then(res => {
-        const results = res.data.results;
-        if (results !== this.state.results) {
-          this.setState({ results });
+        const loading = false;
+        const term = query.term;
+        let results = res.data.results;
+        if (results[0].term === "key-not-found") {
+          results = [];
         }
+        this.setState({ loading, term, results });
       })
   }
 
-  validate() {
-    const { post, valid } = this.state;
-
-    valid.title = post.title.length > 0;
-    valid.room = post.room.length > 0;
-    valid.building = post.building !== "-- Select building --";
-    valid.images = post.images.length > 0;
-    valid.desc = post.desc.length < 251;
-    valid.feeds = post.feeds !== "" && post.feeds > 0;
-
-    const validForm = valid.title && valid.room && valid.building &&
-      valid.images && valid.desc && valid.feeds;
-    this.setState({ validForm });
-  }
-
-  renderResults() {
-    return this.state.results.map(result =>
-      <tr>
-        <td>{result.term}</td>
-        <td>{result.similarity}</td>
-      </tr>
-    )
+  setLoading = state => {
+    const loading = state;
+    this.setState({ loading });
   }
 
   render() {
@@ -77,9 +63,12 @@ export default class App extends React.Component {
           <Container id="app-container" fluid>
             <SimilarForm
               postQuery={this.postQuery}
+              setLoading={this.setLoading}
             />
             <Results
+              loading={this.state.loading}
               results={this.state.results}
+              term={this.state.term}
             />
           </Container>
         </Container>
