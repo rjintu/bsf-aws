@@ -47,7 +47,7 @@ export default class Results extends React.Component {
     else {
       return (
         <Container className="results-msg" fluid>
-          "{this.props.term}" not in model vocabulary.
+          "{this.props.term}" not in model vocabulary, or your vectors were too restrictive. Please try again.
         </Container>
       );
     }

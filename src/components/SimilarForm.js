@@ -70,7 +70,7 @@ export default class SimilarForm extends React.Component {
     const field = name.substr(2);
 
     for (let i = 0; i < query.vectors.length; i++) {
-      if (query.vectors[i].key == key) {
+      if (query.vectors[i].key === key) {
         if (field === "pos" || field === "neg") {
           query.vectors[i].positive = field === "pos";
         }
