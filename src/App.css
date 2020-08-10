@@ -9,29 +9,36 @@ body {
 .btn {
   font-family: 'WorkSans-SemiBold';
   font-style: normal;
+  border: none;
+}
+
+.btn:hover {
+  border: none;
 }
 
 .btn:focus, .btn.focus {
+  border: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.btn.disabled, .btn:disabled {
+  border-color: none;
 }
 
 .btn-primary {
   color: #fff;
   background-color: #53963e;
-  border: none;
 }
 
 .btn-primary:hover {
   color: #fff;
   background-color: #53963e;
-  border: none;
 }
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
   background-color: #53963e;
-  border: none;
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -51,6 +58,37 @@ body {
 .show > .btn-primary.dropdown-toggle:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #FF0039;
+  border-color: #FF0039;
+}
+
+.btn-delete:hover {
+  color: #fff;
+  background-color: #d90030;
+  border-color: #cc002e;
+}
+
+.btn-delete:focus, .btn-delete.focus {
+  color: #fff;
+  background-color: #d90030;
+  border-color: #cc002e;
+}
+
+.btn-delete.disabled, .btn-delete:disabled {
+  color: #fff;
+  background-color: #FF0039;
+  border-color: #FF0039;
+}
+
+.btn-delete:not(:disabled):not(.disabled):active, .btn-delete:not(:disabled):not(.disabled).active,
+.show > .btn-delete.dropdown-toggle {
+  color: #fff;
+  background-color: #cc002e;
+  border-color: #bf002b;
 }
 
 /* FORM */
@@ -73,6 +111,16 @@ body {
 .results-msg {
   font-size: 18.75px;
   text-align: center;
+}
+
+@media (min-width: 576px) {
+  .label {
+    max-width: 100px;
+  }
+
+  .radio-col {
+    max-width: 125px;
+  }
 }
 
 #header {
