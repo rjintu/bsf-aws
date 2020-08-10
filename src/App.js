@@ -30,9 +30,6 @@ export default class App extends React.Component {
         const loading = false;
         const term = query.term;
         let results = res.data.results;
-        if (results[0].term === "key-not-found") {
-          results = [];
-        }
         this.setState({ loading, term, results });
       })
   }
