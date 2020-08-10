@@ -66,12 +66,17 @@ body {
 
 /* CUSTOM */
 
-#header {
-  margin-bottom: 30px;
-}
-
 .logo {
   width: 168px;
+}
+
+.results-msg {
+  font-size: 18.75px;
+  text-align: center;
+}
+
+#header {
+  margin-bottom: 30px;
 }
 
 #logo {
