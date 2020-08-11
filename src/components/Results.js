@@ -10,7 +10,7 @@ export default class Results extends React.Component {
     return this.props.results.results.map((result, index) =>
       <tr key={result.term}>
         <td>{index + 1}</td>
-        <td>{result.term}</td>
+        <td><a href={`https://www.google.com/search?q=${result.term.replaceAll(" ", "+")}`} target="_blank">{result.term}</a></td>
         <td>{result.similarity}</td>
       </tr>
     )
