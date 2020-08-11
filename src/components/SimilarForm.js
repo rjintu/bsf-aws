@@ -55,7 +55,8 @@ export default class SimilarForm extends React.Component {
     const name = event.target.name;
     const query = this.state.query;
 
-    const key = name.substr(0, 1);
+    const dash = name.indexOf("-");
+    const key = name.substr(0, dash);
     query.vectors = query.vectors.filter(vector => vector.key !== key);
 
     this.setState({ query });
@@ -66,8 +67,10 @@ export default class SimilarForm extends React.Component {
     const name = event.target.name;
     const value = event.target.value;
     const query = this.state.query;
-    const key = name.substr(0, 1);
-    const field = name.substr(2);
+
+    const dash = name.indexOf("-");
+    const key = name.substr(0, dash);
+    const field = name.substr(dash + 1);
 
     for (let i = 0; i < query.vectors.length; i++) {
       if (query.vectors[i].key === key) {
