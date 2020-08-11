@@ -184,3 +184,10 @@ body {
 #results-container {
   padding: 10px 30px;
 }
+
+#results-text {
+  font-family: 'WorkSans-Medium';
+  font-size: 18.75px;
+  padding: 0px;
+  margin-bottom: 15px;
+}

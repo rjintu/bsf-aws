@@ -7,10 +7,10 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 export default class Results extends React.Component {
   renderTerms() {
-    return this.props.results.map((result, index) =>
+    return this.props.results.results.map((result, index) =>
       <tr key={result.term}>
         <td>{index + 1}</td>
-        <td>{result.term}</td>
+        <td><a href={`https://www.google.com/search?q=${result.term.replaceAll(" ", "+")}`} target="_blank" rel="noopener noreferrer">{result.term}</a></td>
         <td>{result.similarity}</td>
       </tr>
     )
@@ -25,29 +25,34 @@ export default class Results extends React.Component {
         </Container>
       );
     }
-    else if (this.props.results === null) {
+    else if (this.props.results.results === null) {
       return;
     }
-    else if (this.props.results.length > 0) {
+    else if (this.props.results.results.length > 0) {
       return (
-        <Table striped bordered hover size="sm">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Term</th>
-              <th>Similarity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderTerms()}
-          </tbody>
-        </Table>
+        <>
+          <Container fluid id="results-text">
+            Results for "{this.props.results.term}"...
+          </Container>
+          <Table striped bordered hover size="sm">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Term</th>
+                <th>Similarity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderTerms()}
+            </tbody>
+          </Table>
+        </>
       );
     }
     else {
       return (
         <Container className="results-msg" fluid>
-          "{this.props.term}" not in model vocabulary, or your vectors were too restrictive. Please try again.
+          "{this.props.results.term}" or other terms not in model vocabulary. Please try another query.
         </Container>
       );
     }
