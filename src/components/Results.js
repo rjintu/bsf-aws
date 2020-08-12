@@ -1,9 +1,10 @@
 import React from 'react';
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Loader from 'react-loader-spinner'
 import Table from "react-bootstrap/Table";
-
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import { CSVLink } from "react-csv";
 
 export default class Results extends React.Component {
   renderTerms() {
@@ -31,8 +32,20 @@ export default class Results extends React.Component {
     else if (this.props.results.results.length > 0) {
       return (
         <>
-          <Container fluid id="results-text">
-            Results for "{this.props.results.term}"...
+          <Container fluid id="results-heading">
+            <Row>
+              <Col id="results-text">
+                Results for "{this.props.results.term}"...
+              </Col>
+              <Col id="download">
+                <CSVLink
+                  data={this.props.results.results}
+                  filename="results"
+                >
+                  Download results
+                </CSVLink>
+              </Col>
+            </Row>
           </Container>
           <Table striped bordered hover size="sm">
             <thead>

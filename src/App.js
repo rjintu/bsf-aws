@@ -8,6 +8,7 @@ import Results from "./components/Results";
 
 import axios from "axios";
 
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import "bootswatch/dist/cosmo/bootstrap.min.css";
 import "./App.css";
 
