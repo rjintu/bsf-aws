@@ -123,6 +123,10 @@ body {
   }
 }
 
+.delete-container {
+  max-width: 122px;
+}
+
 #header {
   margin-bottom: 30px;
 }

@@ -18,8 +18,7 @@ export default class SimilarForm extends React.Component {
     this.vector = {
       key: "0",
       term: "",
-      positive: true,
-      scalar: "1"
+      positive: true
     }
 
     this.state = {
@@ -143,22 +142,13 @@ export default class SimilarForm extends React.Component {
             onChange={this.handleVectorChange}
           />
         </Col>
-        <Form.Label column sm={1} className="col-form-label-lg label">Scalar</Form.Label>
-        <Col sm={2}>
-          <Form.Control className="form-control-lg"
-            type="number"
-            name={`${vector.key}-scalar`}
-            value={vector.scalar}
-            onChange={this.handleVectorChange}
-          />
-        </Col>
-        <Col sm={1}>
+        <Col sm={2} className="delete-container">
           <Button className="btn-lg"
             variant="delete"
             name={`${vector.key}-del`}
             onClick={this.handleDeleteVector}
           >
-            -
+            Delete
           </Button>
         </Col>
       </Form.Group>
