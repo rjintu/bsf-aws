@@ -6,8 +6,6 @@ import Loader from 'react-loader-spinner'
 import Table from "react-bootstrap/Table";
 import { CSVLink } from "react-csv";
 
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
-
 export default class Results extends React.Component {
   renderTerms() {
     return this.props.results.results.map((result, index) =>
