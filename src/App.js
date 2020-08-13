@@ -43,39 +43,41 @@ export default class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <Container>
-          <Container id="header">
-            <Image id="logo" className="logo" src={logo} />
-            <Row>
-              <Col sm={0} id="logo-container" className="text-center">
-                <Image id="logo-mobile" className="logo" src={logo} />
-              </Col>
-              <Col sm={12} id="title" className="text-center">
-                Paiper
-              </Col>
-            </Row>
-          </Container>
-          <Container id="description" className="text-center" fluid>
-            Welcome to the Black Sheep Foods Paiper tool!
-            This is based on a paper by Google researchers that demonstrated how we can mine previously published scientific papers for latent discoveries. The results you see below were trained on 3.5 million articles related to food science.
-            This tool will return the most similar results to your query, based on vector distances.
-            To get started, just type a word into the "term" box and choose the number of results you want. Click the submit button when you're ready.
-            If you'd like to add some additional filters, you can click "add vector" and add another word with a positive or negative connotation.
-            Example: suppose you wanted to find words similar to "cow", but close to "farm" and far from "wild". You can add a positive vector for "farm" and a negative vector for "wild".
-          </Container>
-          <Container id="app-container" fluid>
+        <Container id="header">
+          <Image id="logo" className="logo" src={logo} />
+          <Row>
+            <Col sm={0} id="logo-container" className="text-center">
+              <Image id="logo-mobile" className="logo" src={logo} />
+            </Col>
+            <Col sm={12} id="title" className="text-center">
+              Paiper
+            </Col>
+          </Row>
+        </Container>
+        <Container id="description" className="text-center" fluid>
+          Welcome to the Black Sheep Foods Paiper tool!
+          This is based on a paper by Google researchers that demonstrated how we can mine previously published scientific papers for latent discoveries. The results you see below were trained on 3.5 million articles related to food science.
+          This tool will return the most similar results to your query, based on vector distances.
+          To get started, just type a word into the "term" box and choose the number of results you want. Click the submit button when you're ready.
+          If you'd like to add some additional filters, you can click "add vector" and add another word with a positive or negative connotation.
+          Example: suppose you wanted to find words similar to "cow", but close to "farm" and far from "wild". You can add a positive vector for "farm" and a negative vector for "wild".
+        </Container>
+        <Row id="app-container">
+          <Col sm={6}>
             <SimilarForm
               postQuery={this.postQuery}
               setLoading={this.setLoading}
               setTerm={this.setTerm}
             />
+          </Col>
+          <Col sm={6}>
             <Results
               loading={this.state.loading}
               results={this.state.results}
               term={this.state.term}
             />
-          </Container>
-        </Container>
+          </Col>
+        </Row>
       </div>
     );
   }

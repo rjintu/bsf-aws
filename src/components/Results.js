@@ -27,14 +27,17 @@ export default class Results extends React.Component {
       );
     }
     else if (this.props.results.results === null) {
-      return;
+      return (
+        <Container id="empty-results">
+        </Container>
+      )
     }
     else if (this.props.results.results.length > 0) {
       return (
         <>
           <Container fluid id="results-heading">
             <Row>
-              <Col id="results-text">
+              <Col sm={8} id="results-text">
                 Results for "{this.props.results.query}"
               </Col>
               <Col id="download">

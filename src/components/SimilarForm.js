@@ -123,10 +123,10 @@ export default class SimilarForm extends React.Component {
   renderExtraVectors() {
     return this.state.query.vectors.map((vector) =>
       <Form.Group as={Row} key={vector.key}>
-        <Form.Label column sm={2} className="col-form-label-lg pm-text label">
+        <Form.Label column sm={2} className="col-form-label-lg pm-text">
          {vector.positive ? "+" : "-"}
         </Form.Label>
-        <Col sm={8}>
+        <Col sm={7}>
           <Form.Control className="form-control-lg"
             type="text"
             name={`${vector.key}-term`}
@@ -152,8 +152,8 @@ export default class SimilarForm extends React.Component {
       <Container id="form-container" fluid>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row}>
-            <Col sm={2} className="label"></Col>
-            <Col sm={8}>
+            <Col sm={2} className=""></Col>
+            <Col sm={7}>
               <Form.Control className="form-control-lg"
                 type="text" name="term"
                 placeholder="e.g. flavor"
@@ -163,15 +163,15 @@ export default class SimilarForm extends React.Component {
           </Form.Group>
           {this.renderExtraVectors()}
           <Form.Group as={Row}>
-            <Form.Label column sm={2} className="col-form-label-lg label">Return</Form.Label>
-            <Col sm={2}>
+            <Form.Label column sm={2} className="col-form-label-lg">Return</Form.Label>
+            <Col sm={3}>
               <Form.Control className="form-control-lg"
                 type="number" name="topn"
                 value={this.state.query.topn}
                 onChange={this.handleChange}
               />
             </Col>
-            <Col sm={{ span: 3, offset: 3}} className="pm-button-container">
+            <Col sm={{ span: 3, offset: 1}} id="pm-button-container">
               <ButtonGroup>
                 <Button className="btn-lg" variant="primary"
                   onClick={this.handleAddPositive}>
