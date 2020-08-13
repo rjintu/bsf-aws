@@ -33,7 +33,7 @@ body {
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #53963e;
+  background-color: #468034;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -108,23 +108,26 @@ body {
   width: 168px;
 }
 
+.pm-text {
+  text-align: right;
+}
+@media (max-width: 576px) {
+  .pm-text {
+    text-align: left;
+  }
+}
+
+.label {
+  max-width: 100px;
+}
+
+.pm-button-container {
+  text-align: right;
+}
+
 .results-msg {
   font-size: 18.75px;
   text-align: center;
-}
-
-@media (min-width: 576px) {
-  .label {
-    max-width: 100px;
-  }
-
-  .radio-col {
-    max-width: 125px;
-  }
-}
-
-.delete-container {
-  max-width: 122px;
 }
 
 #header {

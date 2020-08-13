@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
 export default class SimilarForm extends React.Component {
@@ -11,14 +12,13 @@ export default class SimilarForm extends React.Component {
 
     this.query = {
       term: "",
-      topn: "10",
+      topn: "50",
       vectors: []
     }
 
     this.vector = {
       key: "0",
-      term: "",
-      positive: true
+      term: ""
     }
 
     this.state = {
@@ -37,12 +37,27 @@ export default class SimilarForm extends React.Component {
     this.validate();
   }
 
-  handleAddVector = event => {
+  handleAddPositive = event => {
     const query = this.state.query;
     const vector = Object.assign({}, this.vector);
     let vectorCount = this.state.vectorCount;
 
     vector.key = vectorCount.toString();
+    vector.positive = true;
+    query.vectors.push(vector);
+    vectorCount = vectorCount + 1;
+
+    this.setState({ query, vectorCount });
+    this.validate();
+  }
+
+  handleAddNegative = event => {
+    const query = this.state.query;
+    const vector = Object.assign({}, this.vector);
+    let vectorCount = this.state.vectorCount;
+
+    vector.key = vectorCount.toString();
+    vector.positive = false;
     query.vectors.push(vector);
     vectorCount = vectorCount + 1;
 
@@ -67,18 +82,12 @@ export default class SimilarForm extends React.Component {
     const value = event.target.value;
     const query = this.state.query;
 
-    const dash = name.indexOf("-");
-    const key = name.substr(0, dash);
-    const field = name.substr(dash + 1);
+    const key = name.substr(0, name.indexOf("-"));
 
     for (let i = 0; i < query.vectors.length; i++) {
       if (query.vectors[i].key === key) {
-        if (field === "pos" || field === "neg") {
-          query.vectors[i].positive = field === "pos";
-        }
-        else {
-          query.vectors[i][field] = value;
-        }
+        query.vectors[i].term = value;
+        break;
       }
     }
 
@@ -94,10 +103,7 @@ export default class SimilarForm extends React.Component {
     const query = this.state.query;
     query.topn = parseInt(query.topn);
 
-    for (let i = 0; i < query.vectors.length; i++) {
-      query.vectors[i].scalar = parseInt(query.vectors[i].scalar);
-    }
-
+    console.log(query);
     this.props.postQuery(query);
   }
 
@@ -117,8 +123,10 @@ export default class SimilarForm extends React.Component {
   renderExtraVectors() {
     return this.state.query.vectors.map((vector) =>
       <Form.Group as={Row} key={vector.key}>
-        <Form.Label column sm={2} className="col-form-label-lg label">Term</Form.Label>
-        <Col>
+        <Form.Label column sm={2} className="col-form-label-lg pm-text label">
+         {vector.positive ? "+" : "-"}
+        </Form.Label>
+        <Col sm={8}>
           <Form.Control className="form-control-lg"
             type="text"
             name={`${vector.key}-term`}
@@ -126,23 +134,7 @@ export default class SimilarForm extends React.Component {
             onChange={this.handleVectorChange}
           />
         </Col>
-        <Col sm={2} className="radio-col">
-          <Form.Check
-            type="radio"
-            label="Positive"
-            name={`${vector.key}-pos`}
-            checked={vector.positive}
-            onChange={this.handleVectorChange}
-          />
-          <Form.Check
-            type="radio"
-            label="Negative"
-            name={`${vector.key}-neg`}
-            checked={!vector.positive}
-            onChange={this.handleVectorChange}
-          />
-        </Col>
-        <Col sm={2} className="delete-container">
+        <Col>
           <Button className="btn-lg"
             variant="delete"
             name={`${vector.key}-del`}
@@ -160,14 +152,17 @@ export default class SimilarForm extends React.Component {
       <Container id="form-container" fluid>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row}>
-            <Form.Label column sm={2} className="col-form-label-lg label">Term</Form.Label>
-            <Col>
+            <Col sm={2} className="label"></Col>
+            <Col sm={8}>
               <Form.Control className="form-control-lg"
                 type="text" name="term"
                 placeholder="e.g. flavor"
                 onChange={this.handleChange}
               />
             </Col>
+          </Form.Group>
+          {this.renderExtraVectors()}
+          <Form.Group as={Row}>
             <Form.Label column sm={2} className="col-form-label-lg label">Return</Form.Label>
             <Col sm={2}>
               <Form.Control className="form-control-lg"
@@ -176,20 +171,25 @@ export default class SimilarForm extends React.Component {
                 onChange={this.handleChange}
               />
             </Col>
-          </Form.Group>
-          {this.renderExtraVectors()}
-          <Form.Group as={Row}>
-            <Col></Col>
-            <Button className="btn-lg" variant="primary"
-              onClick={this.handleAddVector}>
-              Add vector
-            </Button>
-            <Col sm={1}></Col>
-            <Button className="btn-lg" variant="primary"
-              type="submit"
-              disabled={!this.state.valid}>
-              Submit
-            </Button>
+            <Col sm={{ span: 3, offset: 3}} className="pm-button-container">
+              <ButtonGroup>
+                <Button className="btn-lg" variant="primary"
+                  onClick={this.handleAddPositive}>
+                  +
+                </Button>
+                <Button className="btn-lg" variant="primary"
+                  onClick={this.handleAddNegative}>
+                  -
+                </Button>
+              </ButtonGroup>
+            </Col>
+            <Col>
+              <Button className="btn-lg" variant="primary"
+                type="submit"
+                disabled={!this.state.valid}>
+                Submit
+              </Button>
+            </Col>
           </Form.Group>
         </Form>
       </Container>

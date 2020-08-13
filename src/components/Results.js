@@ -35,7 +35,7 @@ export default class Results extends React.Component {
           <Container fluid id="results-heading">
             <Row>
               <Col id="results-text">
-                Results for "{this.props.results.term}"...
+                Results for "{this.props.results.query}"
               </Col>
               <Col id="download">
                 <CSVLink
@@ -65,7 +65,7 @@ export default class Results extends React.Component {
     else {
       return (
         <Container className="results-msg" fluid>
-          "{this.props.results.term}" or other terms not in model vocabulary. Please try another query.
+          "{this.props.results.query}" or other terms not in model vocabulary. Please try another query.
         </Container>
       );
     }
