@@ -171,7 +171,7 @@ export default class SimilarForm extends React.Component {
                 onChange={this.handleChange}
               />
             </Col>
-            <Col sm={{ span: 2, offset: 4}}>
+            <Col sm={{ span: 3, offset: 3}} className="pm-button-container">
               <ButtonGroup>
                 <Button className="btn-lg" variant="primary"
                   onClick={this.handleAddPositive}>

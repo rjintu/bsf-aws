@@ -121,6 +121,10 @@ body {
   max-width: 100px;
 }
 
+.pm-button-container {
+  text-align: right;
+}
+
 .results-msg {
   font-size: 18.75px;
   text-align: center;
