@@ -21,7 +21,7 @@ export default class Results extends React.Component {
     if (this.props.loading) {
       return (
         <Container className="results-msg" fluid>
-          Retreiving terms...
+          Retrieving terms...
           <Loader type="ThreeDots" color="#53963e" height={20} width={50} />
         </Container>
       );
