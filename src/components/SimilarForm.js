@@ -110,7 +110,7 @@ export default class SimilarForm extends React.Component {
     query.topn = parseInt(query.topn);
 
     console.log(query);
-    this.props.postQuery(query);
+    this.props.getQuery(query, true);
   }
 
   validate() {
@@ -141,7 +141,7 @@ export default class SimilarForm extends React.Component {
             onChange={this.handleVectorChange}
           />
         </Col>
-        <Col sm={2}>
+        <Col sm={3}>
           <Button className="btn-lg"
             variant="delete"
             name={`${vector.key}-del`}
@@ -159,7 +159,7 @@ export default class SimilarForm extends React.Component {
       <Container id="form-container" fluid>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row}>
-            <Col sm={{ offset: 1, span: 9 }}>
+            <Col sm={{ offset: 1 }}>
               <Form.Control className="form-control-lg"
                 type="text" name="term"
                 placeholder="e.g. flavor"
@@ -183,14 +183,14 @@ export default class SimilarForm extends React.Component {
                 </Button>
               </ButtonGroup>
             </Col>
-            <Col sm={{ span: 3, offset: 3}}>
+            <Col sm={{ span: 2, offset: 3}}>
               <Button className="btn-lg"
                 variant="delete"
                 onClick={this.handleClear}>
                 Clear
               </Button>
             </Col>
-            <Col>
+            <Col sm={3}>
               <Button className="btn-lg"
                 variant="primary"
                 type="submit"

@@ -2,19 +2,61 @@ import React from 'react';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Loader from 'react-loader-spinner'
 import Table from "react-bootstrap/Table";
+import Button from 'react-bootstrap/Button'
+import Loader from 'react-loader-spinner'
 import { CSVLink } from "react-csv";
 
+
 export default class Results extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      end: 100
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.results !== this.props.results) {
+      if (this.props.results.newQuery) {
+        this.setState({ end: 100 });
+      }
+    }
+  }
+
+  handleMore = event => {
+    const end = this.state.end + 100;
+    this.setState({ end });
+    if (end == this.props.results.results.length - 500) {
+      this.props.getMoreQuery();
+    }
+  }
+
   renderTerms() {
-    return this.props.results.results.map((result, index) =>
+    const results = this.props.results.results.slice(0, this.state.end);
+    return results.map((result, index) =>
       <tr key={result.term}>
         <td>{index + 1}</td>
         <td><a href={`https://www.google.com/search?q=${result.term.replace(/ /g, "+")}`} target="_blank" rel="noopener noreferrer">{result.term}</a></td>
         <td>{result.similarity.toFixed(5)}</td>
       </tr>
     )
+  }
+
+  renderMore() {
+    if (this.state.end < this.props.results.results.length) {
+      return (
+        <Container fluid>
+          <Button
+            variant="delete"
+            onClick={this.handleMore}
+          >
+            More results...
+          </Button>
+        </Container>
+      );
+    }
   }
 
   renderResults() {
@@ -39,7 +81,7 @@ export default class Results extends React.Component {
               </Col>
               <Col id="download">
                 <CSVLink
-                  data={this.props.results.results}
+                  data={this.props.results.results.slice(0, this.state.end)}
                   filename="results"
                 >
                   Download results
@@ -59,6 +101,7 @@ export default class Results extends React.Component {
               {this.renderTerms()}
             </tbody>
           </Table>
+          {this.renderMore()}
         </>
       );
     }

@@ -20,20 +20,30 @@ export default class App extends React.Component {
 
     this.state = {
       loading: false,
+      prevQuery: null,
       results: {
         term: null,
-        results: null
+        results: null,
+        newQuery: true
       }
     };
   }
 
-  postQuery = async (query) => {
+  getQuery = async (query, newQuery) => {
     await axios.post('https://v6ywaik4w1.execute-api.us-east-2.amazonaws.com/phase1/similar', query)
       .then(res => {
         const loading = false;
+        const prevQuery = query;
         const results = res.data;
-        this.setState({ loading, results });
+        results.newQuery = newQuery;
+        this.setState({ loading, prevQuery, results });
       })
+  }
+
+  getMoreQuery = () => {
+    const query = this.state.prevQuery;
+    query.topn += 1000;
+    this.getQuery(query, false);
   }
 
   setLoading = loading => {
@@ -66,7 +76,7 @@ export default class App extends React.Component {
           <Row>
             <Col sm={6}>
               <SimilarForm
-                postQuery={this.postQuery}
+                getQuery={this.getQuery}
                 setLoading={this.setLoading}
                 setTerm={this.setTerm}
               />
@@ -76,6 +86,7 @@ export default class App extends React.Component {
                 loading={this.state.loading}
                 results={this.state.results}
                 term={this.state.term}
+                getMoreQuery={this.getMoreQuery}
               />
             </Col>
           </Row>
