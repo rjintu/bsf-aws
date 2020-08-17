@@ -12,7 +12,7 @@ export default class Results extends React.Component {
       <tr key={result.term}>
         <td>{index + 1}</td>
         <td><a href={`https://www.google.com/search?q=${result.term.replace(/ /g, "+")}`} target="_blank" rel="noopener noreferrer">{result.term}</a></td>
-        <td>{result.similarity}</td>
+        <td>{result.similarity.toFixed(5)}</td>
       </tr>
     )
   }
