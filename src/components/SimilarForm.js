@@ -12,8 +12,8 @@ export default class SimilarForm extends React.Component {
 
     this.query = {
       term: "",
-      topn: "50",
-      vectors: []
+      topn: "1000",
+      vectors: Array()
     }
 
     this.vector = {
@@ -22,7 +22,7 @@ export default class SimilarForm extends React.Component {
     }
 
     this.state = {
-      query: this.query,
+      query: Object.assign({}, this.query),
       vectorCount: 0,
       valid: false
     };
@@ -95,6 +95,12 @@ export default class SimilarForm extends React.Component {
     this.validate();
   }
 
+  handleClear = event => {
+    const query = Object.assign({}, this.query);
+    query.vectors = [];
+    this.setState({ query });
+  }
+
   handleSubmit = event => {
     event.preventDefault();
     event.returnValue = false;
@@ -123,18 +129,19 @@ export default class SimilarForm extends React.Component {
   renderExtraVectors() {
     return this.state.query.vectors.map((vector) =>
       <Form.Group as={Row} key={vector.key}>
-        <Form.Label column sm={2} className="col-form-label-lg pm-text">
+        <Form.Label column sm={1} className="col-form-label-lg pm-text">
          {vector.positive ? "+" : "-"}
         </Form.Label>
-        <Col sm={7}>
+        <Col>
           <Form.Control className="form-control-lg"
             type="text"
             name={`${vector.key}-term`}
             placeholder="e.g. flavor"
+            value={vector.term}
             onChange={this.handleVectorChange}
           />
         </Col>
-        <Col>
+        <Col sm={2}>
           <Button className="btn-lg"
             variant="delete"
             name={`${vector.key}-del`}
@@ -152,28 +159,21 @@ export default class SimilarForm extends React.Component {
       <Container id="form-container" fluid>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group as={Row}>
-            <Col sm={2} className=""></Col>
-            <Col sm={7}>
+            <Col sm={{ offset: 1, span: 9 }}>
               <Form.Control className="form-control-lg"
                 type="text" name="term"
                 placeholder="e.g. flavor"
+                value={this.state.query.term}
                 onChange={this.handleChange}
               />
             </Col>
           </Form.Group>
           {this.renderExtraVectors()}
           <Form.Group as={Row}>
-            <Form.Label column sm={2} className="col-form-label-lg">Return</Form.Label>
-            <Col sm={3}>
-              <Form.Control className="form-control-lg"
-                type="number" name="topn"
-                value={this.state.query.topn}
-                onChange={this.handleChange}
-              />
-            </Col>
-            <Col sm={{ span: 3, offset: 1}} id="pm-button-container">
+            <Col sm={{ span: 3, offset: 1}}>
               <ButtonGroup>
-                <Button className="btn-lg" variant="primary"
+                <Button className="btn-lg"
+                  variant="primary"
                   onClick={this.handleAddPositive}>
                   +
                 </Button>
@@ -183,8 +183,16 @@ export default class SimilarForm extends React.Component {
                 </Button>
               </ButtonGroup>
             </Col>
+            <Col sm={{ span: 3, offset: 3}}>
+              <Button className="btn-lg"
+                variant="delete"
+                onClick={this.handleClear}>
+                Clear
+              </Button>
+            </Col>
             <Col>
-              <Button className="btn-lg" variant="primary"
+              <Button className="btn-lg"
+                variant="primary"
                 type="submit"
                 disabled={!this.state.valid}>
                 Submit
