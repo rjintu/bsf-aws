@@ -27,10 +27,7 @@ export default class Results extends React.Component {
       );
     }
     else if (this.props.results.results === null) {
-      return (
-        <Container id="empty-results">
-        </Container>
-      )
+      return;
     }
     else if (this.props.results.results.length > 0) {
       return (

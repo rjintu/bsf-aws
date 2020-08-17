@@ -12,7 +12,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import "bootswatch/dist/cosmo/bootstrap.min.css";
 import "./App.css";
 
-import logo from './logos/black-sheep_logo-lockup.png'
+import logo from './logos/black-sheep_logo_website.png'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <Container id="header">
+        <Container id="header" className="margin-0" fluid>
           <Image id="logo" className="logo" src={logo} />
           <Row>
             <Col sm={0} id="logo-container" className="text-center">
@@ -62,22 +62,24 @@ export default class App extends React.Component {
           If you'd like to add some additional filters, you can click "add vector" and add another word with a positive or negative connotation.
           Example: suppose you wanted to find words similar to "cow", but close to "farm" and far from "wild". You can add a positive vector for "farm" and a negative vector for "wild".
         </Container>
-        <Row id="app-container">
-          <Col sm={6}>
-            <SimilarForm
-              postQuery={this.postQuery}
-              setLoading={this.setLoading}
-              setTerm={this.setTerm}
-            />
-          </Col>
-          <Col sm={6}>
-            <Results
-              loading={this.state.loading}
-              results={this.state.results}
-              term={this.state.term}
-            />
-          </Col>
-        </Row>
+        <Container id="app-container" fluid>
+          <Row>
+            <Col sm={6}>
+              <SimilarForm
+                postQuery={this.postQuery}
+                setLoading={this.setLoading}
+                setTerm={this.setTerm}
+              />
+            </Col>
+            <Col sm={6}>
+              <Results
+                loading={this.state.loading}
+                results={this.state.results}
+                term={this.state.term}
+              />
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

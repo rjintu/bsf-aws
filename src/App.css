@@ -133,7 +133,9 @@ table {
 }
 
 #header {
-  margin-bottom: 30px;
+  background-color: black;
+  padding: 1.4vw 4vw;
+  margin: 0;
 }
 
 #logo {
@@ -164,7 +166,7 @@ table {
 }
 
 #title {
-  color: black;
+  color: white;
   font-family: 'Adieu';
   font-style: bold;
   font-size: 45px;
