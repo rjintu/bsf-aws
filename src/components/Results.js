@@ -28,7 +28,7 @@ export default class Results extends React.Component {
   handleMore = event => {
     const end = this.state.end + 100;
     this.setState({ end });
-    if (end == this.props.results.results.length - 500) {
+    if (end === this.props.results.results.length - 500) {
       this.props.getMoreQuery();
     }
   }
@@ -47,9 +47,9 @@ export default class Results extends React.Component {
   renderMore() {
     if (this.state.end < this.props.results.results.length) {
       return (
-        <Container fluid>
+        <Container className="pl-0 pr-0">
           <Button
-            variant="delete"
+            variant="link"
             onClick={this.handleMore}
           >
             More results...
@@ -62,7 +62,7 @@ export default class Results extends React.Component {
   renderResults() {
     if (this.props.loading) {
       return (
-        <Container className="results-msg" fluid>
+        <Container fluid className="results-msg">
           Retrieving terms...
           <Loader type="ThreeDots" color="#53963e" height={20} width={50} />
         </Container>

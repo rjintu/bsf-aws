@@ -13,7 +13,7 @@ export default class SimilarForm extends React.Component {
     this.query = {
       term: "",
       topn: "1000",
-      vectors: Array()
+      vectors: []
     }
 
     this.vector = {
@@ -183,7 +183,7 @@ export default class SimilarForm extends React.Component {
                 </Button>
               </ButtonGroup>
             </Col>
-            <Col sm={{ span: 2, offset: 3}}>
+            <Col sm={{ span: 3, offset: 2 }} className="right-btn-container">
               <Button className="btn-lg"
                 variant="delete"
                 onClick={this.handleClear}>
