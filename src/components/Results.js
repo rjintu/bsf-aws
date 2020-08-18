@@ -89,18 +89,20 @@ export default class Results extends React.Component {
               </Col>
             </Row>
           </Container>
-          <Table striped bordered hover size="sm">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Term</th>
-                <th>Similarity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.renderTerms()}
-            </tbody>
-          </Table>
+          <Container id="results-table">
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Term</th>
+                  <th>Similarity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderTerms()}
+              </tbody>
+            </Table>
+          </Container>
           {this.renderMore()}
         </>
       );

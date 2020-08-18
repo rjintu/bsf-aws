@@ -243,3 +243,9 @@ table {
   padding-top: 10px;
   min-width: 105px
 }
+
+#results-table {
+  overflow: auto;
+  padding: 0;
+  max-height: 50vh;
+}
