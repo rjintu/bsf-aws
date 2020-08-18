@@ -15,8 +15,9 @@ body {
 
 /* TABLE */
 
-table {
+.table {
   background-color: #fff;
+  margin-bottom: 0;
 }
 
 /* BUTTONS */
@@ -119,6 +120,13 @@ table {
 
 .col-form-label-lg {
   font-family: 'Worksans-Medium'
+}
+
+/* PAGINATION */
+
+.page-item.page-num {
+  text-align: center;
+  width: 44px;
 }
 
 /* CUSTOM */
@@ -246,6 +254,7 @@ table {
 
 #results-table {
   overflow: auto;
+  margin-bottom: 1rem;
   padding: 0;
   max-height: 50vh;
 }

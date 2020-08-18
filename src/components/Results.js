@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Button from 'react-bootstrap/Button'
+import Pagination from 'react-bootstrap/Pagination'
 import Loader from 'react-loader-spinner'
 import { CSVLink } from "react-csv";
 
@@ -13,31 +14,54 @@ export default class Results extends React.Component {
     super(props);
 
     this.state = {
-      end: 100
+      page: 1
     };
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.results !== this.props.results) {
       if (this.props.results.newQuery) {
-        this.setState({ end: 100 });
+        this.setState({ page: 1 });
       }
     }
   }
 
-  handleMore = event => {
-    const end = this.state.end + 100;
-    this.setState({ end });
-    if (end === this.props.results.results.length - 500) {
+  handleFirst = event => {
+    this.setState({ page: 1 });
+  }
+
+  handlePrev = event => {
+    const page = this.state.page - 1;
+    this.setState({ page });
+  }
+
+  handleNext = event => {
+    const page = this.state.page + 1;
+    this.setState({ page });
+    this.getMoreTerms(page);
+  }
+
+  handlePage = event => {
+    const page = parseInt(event.target.name);
+    this.setState({ page });
+    this.getMoreTerms(page);
+  }
+
+  getMoreTerms(page) {
+    const length = this.props.results.results.length;
+    if (page % 10 === 7 && length == (page + 3) * 100) {
       this.props.getMoreQuery();
     }
   }
 
   renderTerms() {
-    const results = this.props.results.results.slice(0, this.state.end);
+    const page = this.state.page;
+    const start = (page - 1) * 100;
+    const end = page * 100
+    const results = this.props.results.results.slice(start, end);
     return results.map((result, index) =>
       <tr key={result.term}>
-        <td>{index + 1}</td>
+        <td>{start + index + 1}</td>
         <td><a href={`https://www.google.com/search?q=${result.term.replace(/ /g, "+")}`} target="_blank" rel="noopener noreferrer">{result.term}</a></td>
         <td>{result.similarity.toFixed(5)}</td>
       </tr>
@@ -55,6 +79,62 @@ export default class Results extends React.Component {
             More results...
           </Button>
         </Container>
+      );
+    }
+  }
+
+  renderPages() {
+    const page = this.state.page;
+    if (page === 1) {
+      return (
+        <>
+          <Pagination.First disabled/>
+          <Pagination.Prev disabled/>
+          <Pagination.Item active className="page-num"
+            name="1"
+            onClick={this.handlePage}
+          >
+            1
+          </Pagination.Item>
+          <Pagination.Item className="page-num"
+            name="2"
+            onClick={this.handlePage}
+          >
+            2
+          </Pagination.Item>
+          <Pagination.Item className="page-num"
+            name="3"
+            onClick={this.handlePage}
+          >
+            3
+          </Pagination.Item>
+        </>
+      );
+    }
+    else {
+      return (
+        <>
+          <Pagination.First onClick={this.handleFirst}/>
+          <Pagination.Prev onClick={this.handlePrev}/>
+          <Pagination.Item className="page-num"
+            name={page - 1}
+            onClick={this.handlePage}
+          >
+            {page - 1}
+          </Pagination.Item>
+          <Pagination.Item active className="page-num"
+            name={page}
+            onClick={this.handlePage}
+          >
+            {page}
+          </Pagination.Item>
+          <Pagination.Item className="page-num"
+            name={page + 1}
+            onClick={this.handlePage}
+          >
+            {page + 1}
+          </Pagination.Item>
+        </>
       );
     }
   }
@@ -81,8 +161,8 @@ export default class Results extends React.Component {
               </Col>
               <Col id="download">
                 <CSVLink
-                  data={this.props.results.results.slice(0, this.state.end)}
-                  filename="results"
+                  data={this.props.results.results}
+                  filename={this.props.results.query}
                 >
                   Download results
                 </CSVLink>
@@ -103,7 +183,10 @@ export default class Results extends React.Component {
               </tbody>
             </Table>
           </Container>
-          {this.renderMore()}
+          <Pagination>
+            {this.renderPages()}
+            <Pagination.Next onClick={this.handleNext}/>
+          </Pagination>
         </>
       );
     }
