@@ -49,7 +49,7 @@ export default class Results extends React.Component {
 
   getMoreTerms(page) {
     const length = this.props.results.results.length;
-    if (page % 10 === 7 && length == (page + 3) * 100) {
+    if (page % 10 === 7 && length === (page + 3) * 100) {
       this.props.getMoreQuery();
     }
   }
