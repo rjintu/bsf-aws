@@ -65,12 +65,7 @@ export default class App extends React.Component {
           </Row>
         </Container>
         <Container id="description" className="text-center" fluid>
-          Welcome to the Black Sheep Foods Paiper tool!
-          This is based on a paper by Google researchers that demonstrated how we can mine previously published scientific papers for latent discoveries. The results you see below were trained on 3.5 million articles related to food science.
-          This tool will return the most similar results to your query, based on vector distances.
-          To get started, just type a word into the "term" box and choose the number of results you want. Click the submit button when you're ready.
-          If you'd like to add some additional filters, you can click "add vector" and add another word with a positive or negative connotation.
-          Example: suppose you wanted to find words similar to "cow", but close to "farm" and far from "wild". You can add a positive vector for "farm" and a negative vector for "wild".
+          Welcome to the Black Sheep Foods pAIper tool! pAIper is a tool that uses machine learning to guide your research by generating intelligent suggestions. The suggestions are based on insights our ML model gleaned by reading over 3 million relevant food science articles. These suggestions can help guide your research by identifying key terms to research as a starting point, finding similar compounds to act as substitutes or replacements for materials you are using in an experiment, or even finding relationships between words using our analogies tools. The tool is not meant to be a search engine but rather act as a prefilter to help you choose the right starting point for a new line of inquiry to be researched using your preferred existing methods (Google, PubMed, etc.). This tool is simple, easy to use, and built to identify patterns and ideas that a human might otherwise not see. Want to get started? Just enter a search term below and click submit to begin using it.
         </Container>
         <Container id="app-container" fluid>
           <Row>
