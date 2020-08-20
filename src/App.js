@@ -21,8 +21,9 @@ export default class App extends React.Component {
     this.state = {
       loading: false,
       prevQuery: null,
+      searches: [],
       results: {
-        term: null,
+        query: null,
         results: null,
         newQuery: true
       }
@@ -36,7 +37,21 @@ export default class App extends React.Component {
         const prevQuery = query;
         const results = res.data;
         results.newQuery = newQuery;
-        this.setState({ loading, prevQuery, results });
+
+        const name = results.query;
+        const searches = this.state.searches.filter(query => query.name !== name);
+        if (newQuery && name !== null && results.results.length > 0) {
+          const search = {
+            query: Object.assign({}, query),
+            name: name
+          }
+          if (searches.length === 10) {
+            searches.pop();
+          }
+          searches.unshift(search);
+        }
+
+        this.setState({ loading, prevQuery, searches, results });
       })
   }
 
@@ -71,6 +86,7 @@ export default class App extends React.Component {
           <Row>
             <Col sm={6}>
               <SimilarForm
+                searches={this.state.searches}
                 getQuery={this.getQuery}
                 setLoading={this.setLoading}
                 setTerm={this.setTerm}

@@ -153,6 +153,10 @@ body {
   vertical-align: bottom;
 }
 
+.searches {
+  margin: 10px 0px;
+}
+
 .results-msg {
   font-size: 18.75px;
   text-align: center;
