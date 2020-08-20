@@ -137,10 +137,10 @@ export default class SimilarForm extends React.Component {
     this.props.setLoading(true);
 
     const analogy = this.state.analogy;
-    console.log(analogy);
     const query = Object.assign({}, this.query);
     query.term = analogy.r1;
     query.topn = parseInt(query.topn);
+    query.vectors = [];
 
     const p2 = Object.assign({}, this.vector);
     p2.term = analogy.p2;
