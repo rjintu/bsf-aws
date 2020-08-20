@@ -162,7 +162,7 @@ export default class Results extends React.Component {
               <Col id="download">
                 <CSVLink
                   data={this.props.results.results}
-                  filename={this.props.results.query}
+                  filename={`${this.props.results.query}.csv`}
                 >
                   Download results
                 </CSVLink>
