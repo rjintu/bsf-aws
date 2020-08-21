@@ -18,7 +18,7 @@ export default class Results extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.results !== this.props.results) {
       if (this.props.results.newQuery) {
         this.setState({ page: 1 });
@@ -26,25 +26,33 @@ export default class Results extends React.Component {
     }
   }
 
+  scrollToTop = () => {
+    this.results.scrollTop = 0;
+  }
+
   handleFirst = event => {
     this.setState({ page: 1 });
+    this.scrollToTop();
   }
 
   handlePrev = event => {
     const page = this.state.page - 1;
     this.setState({ page });
+    this.scrollToTop();
   }
 
   handleNext = event => {
     const page = this.state.page + 1;
     this.setState({ page });
     this.getMoreTerms(page);
+    this.scrollToTop();
   }
 
   handlePage = event => {
     const page = parseInt(event.target.name);
     this.setState({ page });
     this.getMoreTerms(page);
+    this.scrollToTop();
   }
 
   getMoreTerms(page) {
@@ -169,7 +177,9 @@ export default class Results extends React.Component {
               </Col>
             </Row>
           </Container>
-          <Container id="results-table">
+          <Container id="results-table"
+            ref={(el) => { this.results = el; }}
+          >
             <Table striped bordered hover size="sm">
               <thead>
                 <tr>
