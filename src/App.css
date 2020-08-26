@@ -299,7 +299,11 @@ body {
 
 #description {
   color: black;
-  padding: 30px 60px;
+  padding: 30px 60px 10px;
+}
+
+#tutorial-btn {
+  padding: 10px 0px 20px;
 }
 
 #app-container {
