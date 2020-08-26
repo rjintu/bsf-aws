@@ -20,6 +20,42 @@ body {
   margin-bottom: 0;
 }
 
+/* PAGINATION */
+
+.pagination {
+  margin: 0;
+}
+
+.page-link {
+  color: #26afa8;
+}
+
+.page-link:hover {
+  color: #26afa8;
+}
+
+.page-item.active .page-link {
+  background-color: #26afa8;
+  border-color: #26afa8;
+}
+
+/* NAV-LINK */
+
+.nav-pills .nav-link {
+  color: #26afa8;
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.nav-pills .nav-link:focus {
+  border: none;
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+  background-color: #26afa8;
+}
+
 /* BUTTONS */
 
 .btn {
@@ -111,6 +147,36 @@ body {
   padding: 0;
 }
 
+.btn-search {
+  color: #000;
+  font-family: "WorkSans";
+  text-decoration: underline;
+  padding: 0;
+}
+
+.btn-search:hover {
+  color: #000;
+}
+
+.btn-search:focus, .btn-search.focus {
+  color: #000;
+}
+
+.btn-search.disabled, .btn-search:disabled {
+  color: #000;
+}
+
+.btn-search:not(:disabled):not(.disabled):active, .btn-search:not(:disabled):not(.disabled).active,
+.show > .btn-search.dropdown-toggle {
+  color: #000;
+}
+
+.btn-search:not(:disabled):not(.disabled):active:focus, .btn-search:not(:disabled):not(.disabled).active:focus,
+.show > .btn-search.dropdown-toggle:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 /* FORM */
 
 .form-control:focus {
@@ -132,7 +198,11 @@ body {
 /* CUSTOM */
 
 .logo {
-  width: 168px;
+  width: 224.55px;
+}
+
+.app-col {
+  padding: 0px 60px;
 }
 
 .pm-text {
@@ -146,6 +216,15 @@ body {
 
 .label {
   max-width: 100px;
+}
+
+.analogy-text {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.searches {
+  margin: 10px 0px;
 }
 
 .results-msg {
@@ -168,11 +247,21 @@ body {
   margin: 0;
 }
 
-#logo {
-    position: absolute;
-    top: 23px;
-    left: 48px;
+@media (min-width: 576px) {
+  #header {
+    max-height: 87px;
+  }
 }
+
+#logo {
+  width: auto;
+  max-width: 100%;
+  max-height: 50px;
+  position: absolute;
+  top: 18px;
+  left: 50px;
+}
+
 @media (max-width: 576px) {
   #logo {
     height: 0px;
@@ -199,32 +288,37 @@ body {
   color: white;
   font-family: 'Adieu';
   font-style: bold;
-  font-size: 45px;
-  align: center;
-  padding-top: 5px;
+  font-size: 40px;
+  padding: 0;
 }
 @media (min-width: 576px) {
   #title {
-    padding-top: 0px;
+    top: -10px;
   }
 }
 
 #description {
   color: black;
-  margin: 20px 0px;
-  padding: 0px 60px;
+  padding: 30px 60px;
 }
 
 #app-container {
-  padding: 0px 40px;
+  min-height: 442px;
+  padding-bottom: 20px;
+}
+
+#tabs-container {
+  margin-bottom: 10px;
 }
 
 #form-container {
   margin: 20px 10px;
 }
 
-#results-container {
-  padding: 10px 30px;
+#search-title {
+  font-family: "WorkSans-SemiBold";
+  font-size: 16px;
+  padding: 0;
 }
 
 #empty-results {
@@ -257,4 +351,17 @@ body {
   margin-bottom: 1rem;
   padding: 0;
   max-height: 50vh;
+  border: 1px solid #dee2e6;
+}
+
+#tutorial-container {
+  /* background-color: #26afa8; */
+}
+
+#links-container {
+  /* background-color: #000; */
+}
+
+#bsf-container {
+  /* background-color: #53963e; */
 }

@@ -21,8 +21,9 @@ export default class App extends React.Component {
     this.state = {
       loading: false,
       prevQuery: null,
+      searches: [],
       results: {
-        term: null,
+        query: null,
         results: null,
         newQuery: true
       }
@@ -36,7 +37,21 @@ export default class App extends React.Component {
         const prevQuery = query;
         const results = res.data;
         results.newQuery = newQuery;
-        this.setState({ loading, prevQuery, results });
+
+        const name = results.query;
+        const searches = this.state.searches.filter(query => query.name !== name);
+        if (newQuery && name !== null && results.results.length > 0) {
+          const search = {
+            query: Object.assign({}, query),
+            name: name
+          }
+          if (searches.length === 10) {
+            searches.pop();
+          }
+          searches.unshift(search);
+        }
+
+        this.setState({ loading, prevQuery, searches, results });
       })
   }
 
@@ -60,23 +75,24 @@ export default class App extends React.Component {
               <Image id="logo-mobile" className="logo" src={logo} />
             </Col>
             <Col sm={12} id="title" className="text-center">
-              Paiper
+              Shearlock
             </Col>
           </Row>
         </Container>
-        <Container id="description" className="text-center" fluid>
-          Welcome to the Black Sheep Foods pAIper tool! pAIper is a tool that uses machine learning to guide your research by generating intelligent suggestions. The suggestions are based on insights our ML model gleaned by reading over 3 million relevant food science articles. These suggestions can help guide your research by identifying key terms to research as a starting point, finding similar compounds to act as substitutes or replacements for materials you are using in an experiment, or even finding relationships between words using our analogies tools. The tool is not meant to be a search engine but rather act as a prefilter to help you choose the right starting point for a new line of inquiry to be researched using your preferred existing methods (Google, PubMed, etc.). This tool is simple, easy to use, and built to identify patterns and ideas that a human might otherwise not see. Want to get started? Just enter a search term below and click submit to begin using it.
+        <Container id="description" fluid>
+          Welcome to the Black Sheep Foods Shearlock tool! Shearlock is a tool that uses machine learning to guide your research by generating intelligent suggestions. The suggestions are based on insights our ML model gleaned by reading over 3 million relevant food science articles. These suggestions can help guide your research by identifying key terms to research as a starting point, finding similar compounds to act as substitutes or replacements for materials you are using in an experiment, or even finding relationships between words using our analogies tools. The tool is not meant to be a search engine but rather act as a prefilter to help you choose the right starting point for a new line of inquiry to be researched using your preferred existing methods (Google, PubMed, etc.). This tool is simple, easy to use, and built to identify patterns and ideas that a human might otherwise not see. Want to get started? Just enter a search term below and click submit to begin using it.
         </Container>
         <Container id="app-container" fluid>
           <Row>
-            <Col sm={6}>
+            <Col sm={6} className="app-col">
               <SimilarForm
+                searches={this.state.searches}
                 getQuery={this.getQuery}
                 setLoading={this.setLoading}
                 setTerm={this.setTerm}
               />
             </Col>
-            <Col sm={6}>
+            <Col sm={6} className="app-col">
               <Results
                 loading={this.state.loading}
                 results={this.state.results}
@@ -85,6 +101,15 @@ export default class App extends React.Component {
               />
             </Col>
           </Row>
+        </Container>
+        <Container fluid id="tutorial-container">
+
+        </Container>
+        <Container fluid id="links-container">
+
+        </Container>
+        <Container fluid id="bsf-container">
+          
         </Container>
       </div>
     );

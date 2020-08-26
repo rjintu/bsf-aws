@@ -18,7 +18,7 @@ export default class Results extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.results !== this.props.results) {
       if (this.props.results.newQuery) {
         this.setState({ page: 1 });
@@ -26,25 +26,33 @@ export default class Results extends React.Component {
     }
   }
 
+  scrollToTop = () => {
+    this.results.scrollTop = 0;
+  }
+
   handleFirst = event => {
     this.setState({ page: 1 });
+    this.scrollToTop();
   }
 
   handlePrev = event => {
     const page = this.state.page - 1;
     this.setState({ page });
+    this.scrollToTop();
   }
 
   handleNext = event => {
     const page = this.state.page + 1;
     this.setState({ page });
     this.getMoreTerms(page);
+    this.scrollToTop();
   }
 
   handlePage = event => {
     const page = parseInt(event.target.name);
     this.setState({ page });
     this.getMoreTerms(page);
+    this.scrollToTop();
   }
 
   getMoreTerms(page) {
@@ -139,7 +147,7 @@ export default class Results extends React.Component {
     }
   }
 
-  renderResults() {
+  render() {
     if (this.props.loading) {
       return (
         <Container fluid className="results-msg">
@@ -149,7 +157,10 @@ export default class Results extends React.Component {
       );
     }
     else if (this.props.results.results === null) {
-      return;
+      return (
+        <>
+        </>
+      );
     }
     else if (this.props.results.results.length > 0) {
       return (
@@ -162,14 +173,16 @@ export default class Results extends React.Component {
               <Col id="download">
                 <CSVLink
                   data={this.props.results.results}
-                  filename={this.props.results.query}
+                  filename={`${this.props.results.query}.csv`}
                 >
                   Download results
                 </CSVLink>
               </Col>
             </Row>
           </Container>
-          <Container id="results-table">
+          <Container id="results-table"
+            ref={(el) => { this.results = el; }}
+          >
             <Table striped bordered hover size="sm">
               <thead>
                 <tr>
@@ -197,13 +210,5 @@ export default class Results extends React.Component {
         </Container>
       );
     }
-  }
-
-  render() {
-    return (
-      <Container id="results-container" fluid>
-        {this.renderResults()}
-      </Container>
-    );
   }
 }
