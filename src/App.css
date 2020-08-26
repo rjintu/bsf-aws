@@ -220,7 +220,7 @@ body {
 
 .analogy-text {
   text-align: center;
-  vertical-align: bottom;
+  padding-top: 10px;
 }
 
 .searches {

@@ -285,7 +285,7 @@ export default class SimilarForm extends React.Component {
             </Tab.Pane>
             <Tab.Pane eventKey="analogies">
               <Form onSubmit={this.handleSubmitAnalogy}>
-                <Form.Group as={Row}>
+                <Form.Group as={Row} noGutters>
                   <Col>
                     <Form.Control
                       type="text" name="p1"
@@ -321,7 +321,7 @@ export default class SimilarForm extends React.Component {
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
-                  <Col sm={{ span: 3, offset: 2 }} className="right-btn-container">
+                  <Col sm={{ span: 3, offset: 6 }} className="right-btn-container">
                     <Button
                       variant="delete"
                       onClick={this.handleClear}>
