@@ -103,13 +103,13 @@ export default class App extends React.Component {
           </Row>
         </Container>
         <Container fluid id="tutorial-container">
-
+          Tutorial
         </Container>
         <Container fluid id="links-container">
-
+          Links
         </Container>
         <Container fluid id="bsf-container">
-          
+          BSF
         </Container>
       </div>
     );
