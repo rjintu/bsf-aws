@@ -211,11 +211,11 @@ export default class SimilarForm extends React.Component {
     )
   }
 
-  rendersearches() {
+  renderSearches() {
     return this.props.searches.map((query, index) =>
       <Row noGutters key={query.name} className="searches">
-        <Col sm={{ offset: 1 }}>
-          <Button name={index} onClick={this.handlePrevQuery}>
+        <Col>
+          <Button name={index} variant="search" onClick={this.handlePrevQuery}>
             {query.name}
           </Button>
         </Col>
@@ -241,7 +241,7 @@ export default class SimilarForm extends React.Component {
             <Tab.Pane eventKey="normal">
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group as={Row}>
-                  <Col sm={{ offset: 1 }}>
+                  <Col>
                     <Form.Control
                       type="text" name="term"
                       placeholder="e.g. flavor"
@@ -252,7 +252,7 @@ export default class SimilarForm extends React.Component {
                 </Form.Group>
                 {this.renderExtraVectors()}
                 <Form.Group as={Row}>
-                  <Col sm={{ span: 3, offset: 1}}>
+                  <Col sm={3}>
                     <ButtonGroup>
                       <Button
                         variant="primary"
@@ -265,7 +265,7 @@ export default class SimilarForm extends React.Component {
                       </Button>
                     </ButtonGroup>
                   </Col>
-                  <Col sm={{ span: 3, offset: 2 }} className="right-btn-container">
+                  <Col sm={{ span: 3, offset: 3 }} className="right-btn-container">
                     <Button
                       variant="delete"
                       onClick={this.handleClear}>
@@ -342,7 +342,10 @@ export default class SimilarForm extends React.Component {
           </Tab.Content>
         </Tab.Container>
         <Container className="pl-0 pr-0">
-          {this.rendersearches()}
+          <Container id="search-title">
+            Search History
+          </Container>
+          {this.renderSearches()}
         </Container>
       </>
     );

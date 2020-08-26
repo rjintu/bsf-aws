@@ -147,7 +147,7 @@ export default class Results extends React.Component {
     }
   }
 
-  renderResults() {
+  render() {
     if (this.props.loading) {
       return (
         <Container fluid className="results-msg">
@@ -157,7 +157,10 @@ export default class Results extends React.Component {
       );
     }
     else if (this.props.results.results === null) {
-      return;
+      return (
+        <>
+        </>
+      );
     }
     else if (this.props.results.results.length > 0) {
       return (
@@ -207,13 +210,5 @@ export default class Results extends React.Component {
         </Container>
       );
     }
-  }
-
-  render() {
-    return (
-      <Container id="results-container" fluid>
-        {this.renderResults()}
-      </Container>
-    );
   }
 }

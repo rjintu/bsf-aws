@@ -79,12 +79,12 @@ export default class App extends React.Component {
             </Col>
           </Row>
         </Container>
-        <Container id="description" className="text-center" fluid>
+        <Container id="description" fluid>
           Welcome to the Black Sheep Foods Shearlock tool! Shearlock is a tool that uses machine learning to guide your research by generating intelligent suggestions. The suggestions are based on insights our ML model gleaned by reading over 3 million relevant food science articles. These suggestions can help guide your research by identifying key terms to research as a starting point, finding similar compounds to act as substitutes or replacements for materials you are using in an experiment, or even finding relationships between words using our analogies tools. The tool is not meant to be a search engine but rather act as a prefilter to help you choose the right starting point for a new line of inquiry to be researched using your preferred existing methods (Google, PubMed, etc.). This tool is simple, easy to use, and built to identify patterns and ideas that a human might otherwise not see. Want to get started? Just enter a search term below and click submit to begin using it.
         </Container>
         <Container id="app-container" fluid>
           <Row>
-            <Col sm={6}>
+            <Col sm={6} className="app-col">
               <SimilarForm
                 searches={this.state.searches}
                 getQuery={this.getQuery}
@@ -92,7 +92,7 @@ export default class App extends React.Component {
                 setTerm={this.setTerm}
               />
             </Col>
-            <Col sm={6}>
+            <Col sm={6} className="app-col">
               <Results
                 loading={this.state.loading}
                 results={this.state.results}
