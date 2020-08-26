@@ -102,14 +102,14 @@ export default class App extends React.Component {
             </Col>
           </Row>
         </Container>
-        <Container fluid>
-          Tutorial
+        <Container fluid id="tutorial-container">
+
         </Container>
-        <Container fluid>
-          Links
+        <Container fluid id="links-container">
+
         </Container>
-        <Container fluid>
-          BSF
+        <Container fluid id="bsf-container">
+          
         </Container>
       </div>
     );
