@@ -132,7 +132,7 @@ body {
 /* CUSTOM */
 
 .logo {
-  width: 168px;
+  width: 224.55px;
 }
 
 .pm-text {
@@ -179,9 +179,10 @@ body {
 
 #logo {
     position: absolute;
-    top: 23px;
-    left: 48px;
+    top: 18px;
+    left: 50px;
 }
+
 @media (max-width: 576px) {
   #logo {
     height: 0px;
@@ -208,7 +209,7 @@ body {
   color: white;
   font-family: 'Adieu';
   font-style: bold;
-  font-size: 45px;
+  font-size: 40px;
   align: center;
   padding-top: 5px;
 }
