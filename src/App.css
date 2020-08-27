@@ -222,6 +222,11 @@ body {
   text-align: center;
   padding-top: 10px;
 }
+@media (max-width: 576px) {
+  .analogy-text {
+    padding: 10px 0px;
+  }
+}
 
 .searches {
   margin: 10px 0px;

@@ -286,7 +286,7 @@ export default class SimilarForm extends React.Component {
             <Tab.Pane eventKey="analogies">
               <Form onSubmit={this.handleSubmitAnalogy}>
                 <Form.Group as={Row} noGutters>
-                  <Col>
+                  <Col sm={2}>
                     <Form.Control
                       type="text" name="p1"
                       placeholder="cow"
@@ -297,7 +297,7 @@ export default class SimilarForm extends React.Component {
                   <Col sm={2} className="analogy-text">
                     is to
                   </Col>
-                  <Col>
+                  <Col  sm={2}>
                     <Form.Control
                       type="text" name="p2"
                       placeholder="beef"
@@ -305,10 +305,10 @@ export default class SimilarForm extends React.Component {
                       onChange={this.handleChangeAnalogy}
                     />
                   </Col>
-                  <Col sm={1} className="analogy-text">
+                  <Col sm={2} className="analogy-text">
                     as
                   </Col>
-                  <Col>
+                  <Col sm={2}>
                     <Form.Control
                       type="text" name="r1"
                       placeholder="pig"
