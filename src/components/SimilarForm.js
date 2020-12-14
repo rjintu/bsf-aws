@@ -105,10 +105,18 @@ export default class SimilarForm extends React.Component {
     this.validate();
   }
 
-  handleClear = event => {
+  handleClearQuery = event => {
     const query = Object.assign({}, this.query);
     query.vectors = [];
     this.setState({ query });
+  }
+
+  handleClearAnalogy = event => {
+    const analogy = Object.assign({}, this.analogy);
+    analogy.p1 = "";
+    analogy.p2 = "";
+    analogy.r1 = "";
+    this.setState({ analogy });
   }
 
   handleSubmit = event => {
@@ -268,7 +276,7 @@ export default class SimilarForm extends React.Component {
                   <Col sm={{ span: 3, offset: 3 }} className="right-btn-container">
                     <Button
                       variant="delete"
-                      onClick={this.handleClear}>
+                      onClick={this.handleClearQuery}>
                       Clear
                     </Button>
                   </Col>
@@ -324,7 +332,7 @@ export default class SimilarForm extends React.Component {
                   <Col sm={{ span: 3, offset: 6 }} className="right-btn-container">
                     <Button
                       variant="delete"
-                      onClick={this.handleClear}>
+                      onClick={this.handleClearAnalogy}>
                       Clear
                     </Button>
                   </Col>
