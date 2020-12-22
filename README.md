@@ -1,9 +1,9 @@
 # Black Sheep Foods - AWS Frontend
-Website: shearlock.blacksheepfoods.com
+Website: [shearlock.blacksheepfoods.com](http://shearlock.blacksheepfoods.com)
 Created in summer 2020 by [Bianca Catoto](http://www.github.com/bcatoto), [Rohan Jinturkar](http://www.github.com/rjintu), and [Noah Schochet](http://www.github.com/noahschochet).
 
 ## Overview
-This repository hosts the AWS integration for [Shearlock](http://www.github.com/bcatoto/bsf). 
+This repository hosts the front end for [Shearlock](http://www.github.com/bcatoto/bsf). 
 
 ## Tutorial
 Coming soon!

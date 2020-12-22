@@ -88,7 +88,7 @@ export default class App extends React.Component {
           Welcome to the Black Sheep Foods Shearlock tool! 
           Shearlock uses machine learning to guide your research by generating intelligent suggestions. Based on your inputs, it will
           identify similar compounds based on their context. We developed Shearlock to help identify patterns that
-          might be missed by humans. 
+          might be missed by humans. (If you want to learn more, <a href = "http://www.github.com/rjintu/bsf-aws" target = "_blank" rel = "noopener noreferrer">click here</a>.) 
           
           <br /> <br />Shearlock is not meant to be a search engine and is instead should supplement other methods (Google, PubMed, etc).  
           You can use this tool to find a starting point for any experiments involving food science.
@@ -120,6 +120,11 @@ export default class App extends React.Component {
 
         </Container>
         <Container fluid id="links-container">
+          Shearlock was built by Bianca Catoto, Rohan Jinturkar, and
+          Noah Schochet in Summer 2020. <br />
+          Special thanks to Sunny Kumar,
+          Lauren Whatley, and the rest of the Black Sheep Foods team
+          for their help.
 
         </Container>
         <Container fluid id="bsf-container">
