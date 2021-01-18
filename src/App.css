@@ -367,6 +367,8 @@ body {
   padding: 20px;
   background-color: #000;
   color: #fff;
+  position: relative;
+  bottom: 0;
 }
 
 #bsf-container {
